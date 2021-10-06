@@ -18,4 +18,4 @@ Las bases de datos forman la base de las medianas y grandes empresas hoy en día
 
 [practice]: https://www.dbta.com/Columns/Database-Elaborations/Data-Modeling-Takes-Practice-Practice-Practice-119800.aspx
 
-[improvin_comunications]: https://www.dbta.com/Editorial/Trends-and-Applications/Improving-Communication-Between-Data-Modelers-and-Enterprise-Stakeholders-118726.aspx
+[improving_comunications]: https://www.dbta.com/Editorial/Trends-and-Applications/Improving-Communication-Between-Data-Modelers-and-Enterprise-Stakeholders-118726.aspx
