@@ -13,7 +13,15 @@ Todo se reduce a la **atención al detalle**, y en que nuestra forma de revisar 
 
 ## [**_Improving Comunication Between Data Modelers and Enterprise Stakeholders_**][improving_comunications]
 
-Las bases de datos forman la base de las medianas y grandes empresas hoy en día.
+Las **bases de datos** forman la base de las **medianas y grandes empresas** hoy en día, por lo que una **comunicación clara** entre modeladores de datos y el personale ejecutivo es clave, y resultará en **técnicas más ágiles** de trabajo que reemplazarán a la incesante iteración para desgranar todos los procesos de las organizaciones.
+
+En el texto se propone que los interesados por parte de la empresa utilicen **procesos ejecutivos** para deducir qué nueva información hace falta para que crezca el negocio, y así los modeladores de datos puedan deducir **en qué datos desglosarla**. Además, de esta forma, los modeladores pueden ayudar a identificar información que **no haya sido cubierta**.
+
+Por otro lado, si los **analistas** de la organización se interesan de forma temprana en el proyecto, pueden ayudar a los modeladores a generar **recursos visuales** para los clientes, que alcanzarán un entendimiento más profundo que utilizando la jerga usual de las bases de datos.
+
+## Conclusión final
+
+En el mundo de las bases de datos existe un **problema de comunicación**, puesto que los encargados de diseñarlas deben trabajar codo con codo con y para **profesiones muy alejadas de la suya**. Es por esto que es clave un **punto medio** entre las formas de expresarse propias de cada una de las partes. Pero para que un proyecto realmente tenga **éxito** y sea **viable**, no sólo importan las buenas intenciones y la puesta en común: **prestar atención** a lo que se diseña para una base de datos es importante en extremo. La **atención al detalle**, **revisar el trabajo** un número óptimo de veces antes de que pase a la siguiente fase, y **entender** perfectamente lo que quiere el cliente y poder adaptar los **procesos técnicos reales** a ello son de los aspectos más importantes de la profesión.
 
 
 [practice]: https://www.dbta.com/Columns/Database-Elaborations/Data-Modeling-Takes-Practice-Practice-Practice-119800.aspx
