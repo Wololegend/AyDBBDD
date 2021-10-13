@@ -7,4 +7,4 @@ Por ejemplo, el nombre del directorio de la **primera práctica**, cuya entrega 
 
 **_Práctica-1-Conclusiones-Artículos_**
 
-En caso de que la navegación dentro de alguna práctica requiera de *algún tipo de explicación**, será indicada mediante otro _README.md_ dentro de la carpeta de esa práctica.
+En caso de que la navegación dentro de alguna práctica requiera de **algún tipo de explicación**, será indicada mediante otro _README.md_ dentro de la carpeta de esa práctica.
