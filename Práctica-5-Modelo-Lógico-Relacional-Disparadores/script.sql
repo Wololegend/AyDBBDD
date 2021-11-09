@@ -17,10 +17,12 @@ CREATE TABLE IF NOT EXISTS Viveros (
 DROP TABLE IF EXISTS Empleados;
 
 CREATE TABLE IF NOT EXISTS Empleados (
-  Nombre_y_apellidos VARCHAR(45) NOT NULL,
+  Nombre_y_apellidos VARCHAR(45) NULL,
+  DNI VARCHAR(9) NOT NULL,
   Salario INT NULL,
   Número_SS VARCHAR(15) NULL,
-  PRIMARY KEY (Nombre_y_apellidos));
+  Dirección VARCHAR(90) NULL,
+  PRIMARY KEY (DNI));
 
 
 --      Trabaja_en      --
@@ -105,10 +107,12 @@ CREATE TABLE IF NOT EXISTS Se_asigna (
 DROP TABLE IF EXISTS Cliente_Club;
 
 CREATE TABLE IF NOT EXISTS Cliente_Club (
+  Nombre_y_apellidos VARCHAR(45) NULL
   DNI VARCHAR(9) NOT NULL,
   Crédito_mensual DECIMAL NULL,
   Email TEXT NULL,
   Nombre_y_apellidos VARCHAR(60) NULL,
+  Dirección VARCHAR(90) NULL,
   PRIMARY KEY (DNI));
 
 
@@ -140,23 +144,53 @@ CREATE TABLE IF NOT EXISTS Pedido (
 
 
 -- DEFINICIÓN DE FUNCIONES --
-CREATE OR REPLACE FUNCTION crear_email(IN dom text) RETURNS VARCHAR AS $$
+CREATE OR REPLACE FUNCTION crear_email(IN dom text) RETURNS trigger AS $$
     BEGIN
         IF new.Email IS NULL THEN
-            DECLARE mail text := concat(substring(new.Nombre_y_apellidos from 2 for 4) ,CONCAT('@', dom));
+            DECLARE mail text := concat(substring(new.Nombre_y_apellidos from 2 for 4), CONCAT('@', dom));
 
-            INSERT INTO Cliente_Club(new.DNI, Crédito_mensual, Email, Nombre_y_apellidos) VALUES (new.DNI, new.Crédito_mensual, mail, new.Nombre_y_apellidos);
-
-            RETURN email;
-        END IF;
-    
-        IF new.Email IS NOT NULL THEN
-            RETURN new.Email;
+            INSERT INTO Cliente_Club(DNI, Crédito_mensual, Email, Nombre_y_apellidos)
+            VALUES (new.DNI, new.Crédito_mensual, mail, new.Nombre_y_apellidos);
         END IF;
     END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION check_direccion_empleados() RETURNS trigger AS $$
+	BEGIN
+		IF (SELECT Nombre_y_apellidos
+			FROM Empleados
+			WHERE (Nombre_y_apellidos = new.Nombre_y_apellidos) AND (Dirección = new.Dirección)) IS NOT NULL THEN
+
+				DELETE FROM Empleados
+				WHERE (Nombre_y_apellidos = new.Nombre_y_apellidos) AND (Dirección = new.Dirección);
+
+				RAISE NOTICE 'Una persona no puede vivir en dos direcciones.';
+		END IF;
+	END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION check_direccion_clientes() RETURNS trigger AS $$
+	BEGIN
+		IF (SELECT Nombre_y_apellidos
+			FROM Cliente_Club
+			WHERE (Nombre_y_apellidos = new.Nombre_y_apellidos) AND (Dirección = new.Dirección)) IS NOT NULL THEN
+
+				DELETE FROM Cliente_Club
+				WHERE (Nombre_y_apellidos = new.Nombre_y_apellidos) AND (Dirección = new.Dirección);
+
+				RAISE NOTICE 'Una persona no puede vivir en dos direcciones.';
+		END IF;
+	END;
 $$ LANGUAGE plpgsql;
 
 
 -- DEFINICIÓN DE TRIGGERS --
 CREATE TRIGGER trigger_crear_email_before_insert BEFORE INSERT ON Cliente_Club
 FOR EACH ROW EXECUTE PROCEDURE crear_email('gmail.com');
+
+CREATE TRIGGER trigger_comprobar_dirección_empleados AFTER INSERT ON Empleados
+FOR EACH ROW EXECUTE PROCEDURE check_direccion_empleados();
+
+CREATE TRIGGER trigger_comprobar_dirección_clientes AFTER INSERT ON Empleados
+FOR EACH ROW EXECUTE PROCEDURE check_direccion_empleados();
