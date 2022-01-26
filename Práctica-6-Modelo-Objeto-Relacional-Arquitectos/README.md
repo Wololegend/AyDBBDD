@@ -1,5 +1,8 @@
 # **Práctica 6 - Modelo Objeto-Relacional: Arquitectos**
 ## Jaime Simeón Palomar Blumenthal - alu0101228587@ull.edu.es
+## Cristo García González - alu0101204512@ull.edu.es
+## Alberto Cruz Luis - alu0101217734@ull.edu.es
+
 
 ### **Índice**
 1. [Objetivo de la práctica](#objetivo)
